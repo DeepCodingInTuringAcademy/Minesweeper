@@ -21,11 +21,13 @@ class GameBoard {
     std::vector<std::vector<Cell>> board_; ///< 地图格子
     bool firstMove_;                 ///< 是否第一次点击（用于避免初点就是雷）
 
+    //dearling
     void generateMines(int firstX, int firstY); ///< 初始化地雷分布
     int countAdjacentMines(int x, int y);       ///< 计算相邻地雷数
     [[nodiscard]] bool inBounds(int x, int y) const;          ///< 判断坐标是否合法
 
 public:
+    //Rain
     GameBoard(int width, int height, int mineCount);
 
     void revealCell(int x, int y);  ///< 翻开格子
@@ -35,12 +37,18 @@ public:
 
     void display(bool revealAll = false) const; ///< 显示地图
 
-    // 格子状态访问
-    [[nodiscard]] bool cellHasMine(int x, int y) const;
-    [[nodiscard]] bool cellIsRevealed(int x, int y) const;
-    [[nodiscard]] bool cellIsFlagged(int x, int y) const;
-    [[nodiscard]] int getAdjacentMines(int x, int y) const;
 
+
+    //XTUG
+    // 格子状态访问
+    //格子是否有地雷
+    [[nodiscard]] bool cellHasMine(int x, int y) const;
+    //格子是否被揭开
+    [[nodiscard]] bool cellIsRevealed(int x, int y) const;
+    //各自是否被插旗
+    [[nodiscard]] bool cellIsFlagged(int x, int y) const;
+    //获取格子周围地雷数
+    [[nodiscard]] int getAdjacentMines(int x, int y) const;
     // 地图尺寸
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;

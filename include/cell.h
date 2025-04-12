@@ -12,6 +12,8 @@
  * @class Cell
  * @brief 表示扫雷地图中的一个格子，包含地雷、翻开、标记等信息。
  */
+
+//yy
 class Cell {
     bool hasMine_;        ///< 是否有地雷
     bool revealed_;       ///< 是否已被翻开
