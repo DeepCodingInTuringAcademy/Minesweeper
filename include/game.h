@@ -22,11 +22,13 @@ class Game {
     bool gameOver_;      ///< 游戏是否结束
     bool win_;           ///< 是否获胜
 
+    //组长
     void handleInput(const std::string& input); ///< 解析用户输入
     void processReveal(int x, int y);           ///< 处理翻开格子
     void processFlag(int x, int y);             ///< 处理标记格子
 
 public:
+    //十七
     Game(int width, int height, int mineCount);
 
     void run();               ///< 游戏主循环
