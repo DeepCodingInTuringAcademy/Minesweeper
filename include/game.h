@@ -29,8 +29,8 @@ class Game {
 
 public:
     //十七
-    Game(int width, int height, int mineCount);
-
+    Game(int, int, int);
+    bool Over();              ///游戏是否结束
     void run();               ///< 游戏主循环
     static void startMenu(); ///< 静态主菜单入口函数
 };
