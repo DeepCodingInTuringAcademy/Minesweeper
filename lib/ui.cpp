@@ -44,3 +44,7 @@ void GameUI::showInstructions() const {
 void GameUI::promptInput() const {
     std::cout << "请输入命令：" <<std::endl;
 }
+
+void GameUI::printMessage(const std::string &message) const {
+
+}

@@ -19,20 +19,21 @@
 class Game {
     GameBoard board_;    ///< 游戏地图
     GameUI ui_;          ///< 控制台 UI 显示工具
-    bool gameOver_;      ///< 游戏是否结束
-    bool win_;           ///< 是否获胜
+    bool gameOver_= false;      ///< 游戏是否结束
+    bool win_ = false;           ///< 是否获胜
 
     //组长
     void handleInput(const std::string& input); ///< 解析用户输入
     void processReveal(int x, int y);           ///< 处理翻开格子
     void processFlag(int x, int y);             ///< 处理标记格子
+    static std::string usageInfo();
 
 public:
     //十七
     Game(int, int, int);
     bool Over();              ///游戏是否结束
     void run();               ///< 游戏主循环
-    static void startMenu(); ///< 静态主菜单入口函数
+    void startMenu(); ///< 静态主菜单入口函数
 };
 
 #endif //GAME_H
