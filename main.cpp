@@ -1,6 +1,13 @@
 #include <iostream>
-
+#include "include/cell.h"
+#include "include/game.h"
+#include "include/gameboard.h"
+#include "include/ui.h"
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    Game game(10,10,100);
+    game.startMenu();
+    while(game.Over())
+    {
+        game.run();
+    }
 }

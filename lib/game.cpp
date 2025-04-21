@@ -1,7 +1,10 @@
-#include <stdexcept>
-#include "game.h"
-#include "utility.h"
 
+#include "../include/game.h"
+#include "../include/gameboard.h"
+#include "../include/ui.h"
+#include <iostream>
+#include <stdexcept>
+#include "utility.h"
 
 void Game::handleInput(const std::string &input) {
     std::vector<std::string> ipt_vec = split(input);
@@ -107,13 +110,36 @@ void Game::processFlag(int x, int y) {
 }
 
 Game::Game(int width, int height, int mineCount) : board_(width, height, mineCount) {
-} // 默认实现，目的是保证代码不出现编译错误（因为成员board_不支持默认构造）
-// 合并时若出现冲突丢弃或覆盖此处改动即可 by 组长
+    ui_ = GameUI();
+    gameOver_ = false;
+    win_ = false;
+}
 
 void Game::run() {
 }
 
-void Game::startMenu() {
+void Game::startMenu()
+{
+    ui_.showTitle();
+    ui_.showMainMenu();
+    switch (ui_.getMenuChoice()) {
+        case 1:
+            break;
+        case 2:
+            ui_.showInstructions();
+            break;
+        case 3:
+            ui_.showExitMessage();
+            break;
+        default:
+            ui_.showInvalidOption();
+            break;
+    }
+}
+
+bool Game::Over()
+{
+    return gameOver_;
 }
 
 std::string Game::usageInfo() {
