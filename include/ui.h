@@ -37,6 +37,9 @@ public:
 
     /// 显示命令输入提示符
     void promptInput() const;
+
+    /// 打印提示信息（如错误、成功、操作反馈）
+    void printMessage(const std::string& message) const;
 };
 
 #endif //UI_H

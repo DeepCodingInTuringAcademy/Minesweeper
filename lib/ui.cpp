@@ -20,3 +20,7 @@ void GameUI::showInstructions() const {
 
 void GameUI::promptInput() const {
 }
+
+void GameUI::printMessage(const std::string &message) const {
+
+}
