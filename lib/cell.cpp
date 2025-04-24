@@ -1,6 +1,6 @@
 #include "cell.h"
 
-Cell::Cell()：hasMine_(false),revealed_(false),flagged_(false),adjacentMine_(0)
+Cell::Cell() : hasMine_(false),revealed_(false),flagged_(false),adjacentMine_(0)
 {
 }
 
