@@ -11,6 +11,7 @@
 #include <string>
 #include "gameboard.h"
 #include "ui.h"
+#include "utility.h"
 
 /**
  * @class Game

@@ -1,10 +1,10 @@
 
-#include "../include/game.h"
-#include "../include/gameboard.h"
-#include "../include/ui.h"
+#include "game.h"
+#include "gameboard.h"
+#include "ui.h"
+#include "utility.h"
 #include <iostream>
 #include <stdexcept>
-#include "utility.h"
 
 void Game::handleInput(const std::string &input) {
     std::vector<std::string> ipt_vec = split(input);
