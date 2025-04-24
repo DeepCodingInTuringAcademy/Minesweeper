@@ -1,5 +1,5 @@
 #include <sstream>
-#include "../include/utility.h"
+#include "utility.h"
 
 
 std::vector<std::string> split(const std::string &str) {
