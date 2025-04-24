@@ -1,5 +1,4 @@
 #include "gameboard.h"
-#include <iostream>
 
 void GameBoard::generateMines(int firstX, int firstY)
 {
@@ -132,26 +131,32 @@ void GameBoard::display(bool revealAll) const
     }
 }
 
-bool GameBoard::cellHasMine(int x, int y) const
-{
+bool GameBoard::cellHasMine(int x, int y) const {
 }
-
+// Check if the cell is revealed
 bool GameBoard::cellIsRevealed(int x, int y) const
 {
+    if (!inBounds(x, y))
+    {
+        return false; // Invalid coordinates, return false
+    }
+    return board_[y][x].isRevealed(); // Return if the cell is revealed
 }
 
-bool GameBoard::cellIsFlagged(int x, int y) const
-{
+bool GameBoard::cellIsFlagged(int x, int y) const {
 }
-
+// Get the number of adjacent mines to the cell
 int GameBoard::getAdjacentMines(int x, int y) const
 {
+    if (!inBounds(x, y))
+    {
+        return -1; // Invalid coordinates, return -1
+    }
+    return board_[y][x].getAdjacentMines(); // Return the number of adjacent mines
 }
 
-int GameBoard::getWidth() const
-{
+int GameBoard::getWidth() const {
 }
 
-int GameBoard::getHeight() const
-{
+int GameBoard::getHeight() const {
 }
