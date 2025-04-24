@@ -1,4 +1,5 @@
 #include "gameboard.h"
+#include <iostream>
 
 void GameBoard::generateMines(int firstX, int firstY)
 {
