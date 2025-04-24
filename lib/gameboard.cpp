@@ -36,50 +36,50 @@ void GameBoard::display(bool revealAll) const
 {
 }
 
-// board_是二维数组，先定义行，再定义列
-// 判断格子是否有地雷
+// board_ is a 2D array, defined as rows first, then columns
+// Check if the cell has a mine
 bool GameBoard::cellHasMine(int x, int y) const
 {
     if (!inBounds(x, y))
     {
-        return false; // 坐标不合法，返回 false
+        return false; // Invalid coordinates, return false
     }
-    return board_[y][x].hasMine(); // 返回格子是否有地雷
+    return board_[y][x].hasMine(); // Return if the cell has a mine
 }
-// 判断格子是否被揭开
+// Check if the cell is revealed
 bool GameBoard::cellIsRevealed(int x, int y) const
 {
     if (!inBounds(x, y))
     {
-        return false; // 坐标不合法，返回 false
+        return false; // Invalid coordinates, return false
     }
-    return board_[y][x].isRevealed(); // 返回格子是否被揭开
+    return board_[y][x].isRevealed(); // Return if the cell is revealed
 }
-// 判断格子是否被标记
+// Check if the cell is flagged
 bool GameBoard::cellIsFlagged(int x, int y) const
 {
     if (!inBounds(x, y))
     {
-        return false; // 坐标不合法，返回 false
+        return false; // Invalid coordinates, return false
     }
-    return board_[y][x].isFlagged(); // 返回格子是否被标记
+    return board_[y][x].isFlagged(); // Return if the cell is flagged
 }
-// 获取格子周围地雷数
+// Get the number of adjacent mines to the cell
 int GameBoard::getAdjacentMines(int x, int y) const
 {
     if (!inBounds(x, y))
     {
-        return -1; // 坐标不合法，返回 -1
+        return -1; // Invalid coordinates, return -1
     }
-    return board_[y][x].getAdjacentMines(); // 返回格子周围地雷数
+    return board_[y][x].getAdjacentMines(); // Return the number of adjacent mines
 }
-// 获取地图宽度
+// Get the width of the board
 int GameBoard::getWidth() const
 {
-    return width_; // 返回地图宽度
+    return width_; // Return the width of the board
 }
-// 获取地图高度
+// Get the height of the board
 int GameBoard::getHeight() const
 {
-    return height_; // 返回地图高度
+    return height_; // Return the height of the board
 }
