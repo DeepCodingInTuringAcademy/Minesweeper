@@ -1,4 +1,5 @@
 #include "ui.h"
+#include "../include/ui.h"
 #include<iostream>
 #include<limits>
 
@@ -46,5 +47,5 @@ void GameUI::promptInput() const {
 }
 
 void GameUI::printMessage(const std::string &message) const {
-
+    std::cout << message <<std::endl;
 }
