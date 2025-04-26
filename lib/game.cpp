@@ -116,7 +116,27 @@ Game::Game(int width, int height, int mineCount) : board_(width, height, mineCou
 }
 
 void Game::run() {
+    ui_.promptInput();  // 提示用户输入
+    std::string input;
+    std::getline(std::cin, input);  // 获取用户输入
 
+    try {
+        handleInput(input);  // 处理输入
+    } catch (const std::invalid_argument& e) {
+        ui_.printMessage(e.what());  // 如果有错误，打印错误信息
+        return;
+    }
+
+    if (gameOver_) {  // 游戏结束检查
+        if (win_) {
+            ui_.printMessage("Congratulations! You won!");
+        } else {
+            ui_.printMessage("Game Over! You hit a mine.");
+        }
+        board_.display(true);  // 显示完整地图
+    } else {
+        board_.display();  // 显示当前地图状态
+    }
 }
 
 void Game::startMenu()

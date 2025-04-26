@@ -1,10 +1,13 @@
 #include "cell.h"
-
+#include "cstring"
+#include "cstdlib"
+#include "ctime"
 Cell::Cell() : hasMine_(false),revealed_(false),flagged_(false),adjacentMine_(0)
 {
 }
 
 /// 设置本格子为地雷
+
  ///bool hasMine_;        ///< 是否有地雷
   ///  bool revealed_;       ///< 是否已被翻开
   ///  bool flagged_;        ///< 是否被标记
