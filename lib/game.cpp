@@ -116,6 +116,7 @@ Game::Game(int width, int height, int mineCount) : board_(width, height, mineCou
 }
 
 void Game::run() {
+
 }
 
 void Game::startMenu()
@@ -137,7 +138,7 @@ void Game::startMenu()
     }
 }
 
-bool Game::Over()
+bool Game::Over() const
 {
     return gameOver_;
 }

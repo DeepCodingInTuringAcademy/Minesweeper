@@ -31,7 +31,7 @@ class Game {
 public:
     //十七
     Game(int, int, int);
-    bool Over();              ///游戏是否结束
+    bool Over() const;              ///游戏是否结束
     void run();               ///< 游戏主循环
     void startMenu(); ///< 静态主菜单入口函数
 };
