@@ -213,10 +213,10 @@ int GameBoard::getAdjacentMines(int x, int y) const
 }
 
 int GameBoard::getWidth() const {
+    return this->width_;
 }
 
-
-int GameBoard::getHeight() const
-{
+int GameBoard::getHeight() const {
+    return this->height_;
 }
 
