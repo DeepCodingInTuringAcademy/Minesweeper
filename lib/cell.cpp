@@ -1,8 +1,8 @@
-#include "cell.h"
+#include "../include/cell.h"
 #include "cstring"
 #include "cstdlib"
 #include "ctime"
-Cell::Cell() : hasMine_(false),revealed_(false),flagged_(false),adjacentMine_(0)
+Cell::Cell() : hasMine_(false),revealed_(false),flagged_(false),adjacentMines_(0)
 {
 }
 

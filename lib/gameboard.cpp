@@ -1,13 +1,12 @@
-#include "gameboard.h"
+#include "../include/gameboard.h"
 #include <random>
 #include <algorithm>
-
+#include <iostream>
 void GameBoard::generateMines(int firstX, int firstY)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::vector<std::pair<int, int>> allCells;
-#include <iostream>
 
     // 生成所有可能的格子坐标，排除首次点击的格子
     for (int y = 0; y < height_; ++y)
@@ -66,9 +65,10 @@ int GameBoard::countAdjacentMines(int x, int y)
 }
 
 // 判断坐标是否合法
-bool GameBoard::inBounds(int x, int y) const
-{
+bool GameBoard::inBounds(int x, int y) const {
     return x >= 0 && x < width_ && y >= 0 && y < height_;
+}
+
 GameBoard::GameBoard(int width, int height, int mineCount)
 {
     this->width_ = width;
@@ -215,16 +215,8 @@ int GameBoard::getAdjacentMines(int x, int y) const
 int GameBoard::getWidth() const {
 }
 
-int GameBoard::getWidth() const
-{
-}
 
 int GameBoard::getHeight() const
 {
 }
 
-GameBoard::GameBoard(int width, int height, int mineCount)
-    : width_(width), height_(height), mineCount_(mineCount), firstMove_(true)
-{
-    board_.resize(height_, std::vector<Cell>(width_));
-}
