@@ -65,7 +65,8 @@ int GameBoard::countAdjacentMines(int x, int y)
 }
 
 // 判断坐标是否合法
-bool GameBoard::inBounds(int x, int y) const {
+bool GameBoard::inBounds(int x, int y) const
+{
     return x >= 0 && x < width_ && y >= 0 && y < height_;
 }
 
@@ -80,9 +81,9 @@ GameBoard::GameBoard(int width, int height, int mineCount)
 
 void GameBoard::revealCell(int x, int y)
 {
-    if(this->board_[x][y].isRevealed())
+    if (this->board_[x][y].isRevealed())
     {
-        return ;
+        return;
     }
     this->board_[x][y].reveal();
 }
@@ -94,11 +95,11 @@ void GameBoard::toggleFlag(int x, int y)
 
 bool GameBoard::isGameWon() const
 {
-    for(auto &vecCell : this->board_)
+    for (auto &vecCell : this->board_)
     {
-        for(auto cell : vecCell)
+        for (auto cell : vecCell)
         {
-            if(cell.isRevealed() && cell.hasMine())
+            if (cell.isRevealed() && cell.hasMine())
             {
                 return false;
             }
@@ -109,11 +110,11 @@ bool GameBoard::isGameWon() const
 
 bool GameBoard::isGameOver() const
 {
-    for(auto &row : this->board_)
+    for (auto &row : this->board_)
     {
-        for(auto cell : row)
+        for (auto cell : row)
         {
-            if(cell.isRevealed() && cell.hasMine())
+            if (cell.isRevealed() && cell.hasMine())
             {
                 return true;
             }
@@ -126,69 +127,77 @@ void GameBoard::display(bool revealAll) const
 {
     int height = this->getHeight();
     int width = this->getWidth();
-    if(revealAll)
+    if (revealAll)
     {
-        for(int i = 0; i < width/2 - 2; i++)
+        for (int i = 0; i < width; i++)
         {
-            std::cout << "-";
+            std::cout << " ";
         }
-        std::cout << "Map";
-        for(int i = 0; i < width/2 - 2; i++)
-        {
-            std::cout << "-";
-        }
-        std::cout << std::endl;
-        for(int i = 0; i < width; i++)
+        std::cout << "Map" << std::endl;
+        for (int i = 0; i < width; i++)
         {
             std::cout << "-" << i << "-";
         }
-        for(auto &row : this->board_)
+        std::cout << std::endl;
+        for (auto &row : this->board_)
         {
-            for(auto cell : row)
+            for (auto cell : row)
             {
                 if (cell.hasMine())
                 {
-                    std::cout << " * ";  // 显示地雷
+                    std::cout << " * "; // 显示地雷
                 }
                 else
                 {
-                    std::cout << " " << cell.getAdjacentMines() << " ";  // 显示相邻地雷数
+                    std::cout << " " << cell.getAdjacentMines() << " "; // 显示相邻地雷数
                 }
             }
         }
     }
     else
     {
-        std::cout << "----------Map---------" << std::endl;
-        for(auto &row : this->board_)
+        for (int i = 0; i < width; i++)
         {
-            for(auto cell : row)
+            std::cout << " ";
+        }
+        std::cout << "Map" << std::endl;
+        for (int i = 0; i < width; i++)
+        {
+            std::cout << "-" << i << "-";
+        }
+        std::cout << std::endl;
+        for (auto &row : this->board_)
+        {
+            for (auto cell : row)
             {
                 if (cell.isRevealed())
                 {
                     if (cell.hasMine())
                     {
-                        std::cout << " * ";  // 显示地雷
+                        std::cout << " * "; // 显示地雷
                     }
                     else
                     {
-                        std::cout << " " << cell.getAdjacentMines() << " ";  // 显示相邻地雷数
+                        std::cout << " " << cell.getAdjacentMines() << " "; // 显示相邻地雷数
                     }
                 }
                 else if (cell.isFlagged())
                 {
-                    std::cout << " F ";  // 显示标记
+                    std::cout << " F "; // 显示标记
                 }
                 else
                 {
-                    std::cout << " . ";  // 显示未翻开的格子
+                    std::cout << " . "; // 显示未翻开的格子
                 }
             }
+            std::cout << std::endl;
         }
     }
 }
 
-bool GameBoard::cellHasMine(int x, int y) const {
+bool GameBoard::cellHasMine(int x, int y) const
+{
+    return false;
 }
 // Check if the cell is revealed
 bool GameBoard::cellIsRevealed(int x, int y) const
@@ -200,7 +209,9 @@ bool GameBoard::cellIsRevealed(int x, int y) const
     return board_[y][x].isRevealed(); // Return if the cell is revealed
 }
 
-bool GameBoard::cellIsFlagged(int x, int y) const {
+bool GameBoard::cellIsFlagged(int x, int y) const
+{
+    return false;
 }
 // Get the number of adjacent mines to the cell
 int GameBoard::getAdjacentMines(int x, int y) const
@@ -212,11 +223,12 @@ int GameBoard::getAdjacentMines(int x, int y) const
     return board_[y][x].getAdjacentMines(); // Return the number of adjacent mines
 }
 
-int GameBoard::getWidth() const {
+int GameBoard::getWidth() const
+{
     return this->width_;
 }
 
-int GameBoard::getHeight() const {
+int GameBoard::getHeight() const
+{
     return this->height_;
 }
-
