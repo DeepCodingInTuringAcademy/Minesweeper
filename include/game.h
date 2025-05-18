@@ -22,6 +22,7 @@ class Game {
     GameUI ui_;          ///< 控制台 UI 显示工具
     bool gameOver_= false;      ///< 游戏是否结束
     bool win_ = false;           ///< 是否获胜
+    bool begin_ = false;        ///< 是否开始游戏
 
     //组长
     void handleInput(const std::string& input); ///< 解析用户输入
@@ -33,6 +34,7 @@ public:
     //十七
     Game(int, int, int);
     [[nodiscard]] bool Over() const;              ///游戏是否结束
+    [[nodiscard]] bool Begin() const;              ///游戏是否开始
     void run();               ///< 游戏主循环
     void startMenu(); ///< 静态主菜单入口函数
 };
