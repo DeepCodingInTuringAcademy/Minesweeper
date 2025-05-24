@@ -1,8 +1,4 @@
 #include "gameboard.h"
-#include <random>
-#include <algorithm>
-#include <iostream>
-#include <iomanip>
 
 void GameBoard::generateMines(int firstX, int firstY)
 {
@@ -97,17 +93,17 @@ void GameBoard::toggleFlag(int x, int y)
 
 bool GameBoard::isGameWon() const
 {
-  for (auto &vecCell : this->board_)
+  for (const auto &row : board_)
   {
-    for (auto cell : vecCell)
+    for (const auto &cell : row)
     {
-      if (cell.isRevealed() && cell.hasMine())
+      if (!cell.hasMine() && !cell.isRevealed())
       {
-        return false;
+        return false; // 非地雷格子没翻开，未胜利
       }
     }
   }
-  return true;
+  return true; // 所有非雷格子都翻开了，胜利
 }
 
 bool GameBoard::isGameOver() const
@@ -185,7 +181,11 @@ void GameBoard::display(bool revealAll) const
 
 bool GameBoard::cellHasMine(int x, int y) const
 {
-  return false;
+  if (!inBounds(x, y))
+  {
+    return false; // Invalid coordinates, return false
+  }
+  return board_[x][y].hasMine();
 }
 // Check if the cell is revealed
 bool GameBoard::cellIsRevealed(int x, int y) const
@@ -194,12 +194,16 @@ bool GameBoard::cellIsRevealed(int x, int y) const
   {
     return false; // Invalid coordinates, return false
   }
-  return board_[y][x].isRevealed(); // Return if the cell is revealed
+  return board_[x][y].isRevealed(); // Return if the cell is revealed
 }
 
 bool GameBoard::cellIsFlagged(int x, int y) const
 {
-  return false;
+  if (!inBounds(x, y))
+  {
+    return false; // Invalid coordinates, return false
+  }
+  return board_[x][y].isFlagged();
 }
 // Get the number of adjacent mines to the cell
 int GameBoard::getAdjacentMines(int x, int y) const
@@ -208,7 +212,7 @@ int GameBoard::getAdjacentMines(int x, int y) const
   {
     return -1; // Invalid coordinates, return -1
   }
-  return board_[y][x].getAdjacentMines(); // Return the number of adjacent mines
+  return board_[x][y].getAdjacentMines(); // Return the number of adjacent mines
 }
 
 int GameBoard::getWidth() const
