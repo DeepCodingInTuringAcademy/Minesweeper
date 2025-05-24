@@ -13,12 +13,13 @@
  * @brief 表示扫雷地图中的一个格子，包含地雷、翻开、标记等信息。
  */
 
-//yy
-class Cell {
-    bool hasMine_;        ///< 是否有地雷
-    bool revealed_;       ///< 是否已被翻开
-    bool flagged_;        ///< 是否被标记
-    int adjacentMines_;   ///< 相邻地雷数
+// yy
+class Cell
+{
+    bool hasMine_;      ///< 是否有地雷
+    bool revealed_;     ///< 是否已被翻开
+    bool flagged_;      ///< 是否被标记
+    int adjacentMines_; ///< 相邻地雷数
 
 public:
     Cell();
@@ -48,4 +49,4 @@ public:
     void toggleFlag();
 };
 
-#endif //CELL_H
+#endif // CELL_H

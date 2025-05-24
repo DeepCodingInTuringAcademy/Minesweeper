@@ -8,14 +8,17 @@
 
 #pragma once
 #include <string>
+#include <iostream>
+#include "utility.h"
 
 /**
  * @class GameUI
  * @brief 提供控制台界面交互，显示标题、菜单和提示信息。
  */
 
-//阿浪
-class GameUI {
+// 阿浪
+class GameUI
+{
 public:
     /// 显示 ASCII 风格游戏标题
     void showTitle() const;
@@ -39,7 +42,7 @@ public:
     void promptInput() const;
 
     /// 打印提示信息（如错误、成功、操作反馈）
-    void printMessage(const std::string& message) const;
+    void printMessage(const std::string &message) const;
 };
 
-#endif //UI_H
+#endif // UI_H
