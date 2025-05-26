@@ -193,10 +193,6 @@ void GameBoard::display(const bool revealAll) const
 
 bool GameBoard::cellHasMine(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return false; // Invalid coordinates, return false
-  }
   return board_[x][y].hasMine();
 }
 
@@ -208,28 +204,16 @@ bool GameBoard::cellHasAdjacentMines(const int x, const int y) const
 // Check if the cell is revealed
 bool GameBoard::cellIsRevealed(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return false; // Invalid coordinates, return false
-  }
   return board_[x][y].isRevealed(); // Return if the cell is revealed
 }
 
 bool GameBoard::cellIsFlagged(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return false; // Invalid coordinates, return false
-  }
   return board_[x][y].isFlagged();
 }
 // Get the number of adjacent mines to the cell
 int GameBoard::getAdjacentMines(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return -1; // Invalid coordinates, return -1
-  }
   return board_[x][y].getAdjacentMines(); // Return the number of adjacent mines
 }
 
