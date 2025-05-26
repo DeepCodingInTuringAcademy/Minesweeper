@@ -1,5 +1,5 @@
-
 #include "game.h"
+#include <vector>
 #include "utility.h"
 #include "iostream"
 
@@ -74,16 +74,52 @@ void Game::processReveal(const int x, const int y) {
         return;
     }
 
+    // 提前掀开当前格子（无论是否有雷或数字）
     board_.revealCell(x, y);
 
-    if (board_.isGameOver())
-    {
+    // 如果点到雷，游戏结束
+    if (board_.cellHasMine(x, y)) {
         gameOver_ = true;
         return;
     }
 
-    if (board_.isGameWon())
-    {
+    // 如果是数字格子（周围有雷），不扩展
+    if (board_.cellHasAdjacentMines(x, y)) {
+        return;
+    }
+
+    // BFS 处理空白区域
+    std::vector<std::pair<int, int>> queue;
+    queue.emplace_back(x, y);
+
+    while (!queue.empty()) {
+        const auto [current_x, current_y] = queue.front();
+        queue.erase(queue.begin());
+
+        // 检查 8 个方向的相邻格子
+        for (int i = current_x - 1; i <= current_x + 1; ++i) {
+            if (!board_.inBoundsX(i)) continue;
+
+            for (int j = current_y - 1; j <= current_y + 1; ++j) {
+                if (!board_.inBoundsY(j)) continue;
+                if (i == current_x && j == current_y) continue; // 跳过自身
+
+                if (!board_.cellIsRevealed(i, j) && !board_.cellIsFlagged(i, j)) {
+                    board_.revealCell(i, j); // 先掀开格子
+
+                    // 如果是空白格子，加入队列继续扩展
+                    if (!board_.cellHasAdjacentMines(i, j) && !board_.cellHasMine(i, j)) {
+                        queue.emplace_back(i, j);
+                    }
+                }
+            }
+        }
+    }
+
+    // 检查游戏状态
+    if (board_.isGameOver()) {
+        gameOver_ = true;
+    } else if (board_.isGameWon()) {
         gameOver_ = true;
         win_ = true;
     }
