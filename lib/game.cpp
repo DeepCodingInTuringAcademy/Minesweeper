@@ -63,16 +63,13 @@ void Game::handleInput(const std::string &input)
     }
 }
 
-void Game::processReveal(int x, int y)
-{
-    if (board_.cellIsRevealed(x, y))
-    {
+void Game::processReveal(const int x, const int y) {
+    if (board_.cellIsRevealed(x, y)) {
         GameUI::printMessage("This cell is already revealed.");
         return;
     }
 
-    if (board_.cellIsFlagged(x, y))
-    {
+    if (board_.cellIsFlagged(x, y)) {
         GameUI::printMessage("This cell is flagged. Remove flag first.");
         return;
     }
@@ -92,7 +89,7 @@ void Game::processReveal(int x, int y)
     }
 }
 
-void Game::processFlag(int x, int y)
+void Game::processFlag(const int x, const int y)
 {
     if (board_.cellIsRevealed(x, y))
     {
