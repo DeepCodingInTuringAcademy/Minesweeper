@@ -33,6 +33,9 @@ public:
     /// 判断是否为地雷
     [[nodiscard]] bool hasMine() const;
 
+    /// 判断周围是否存在地雷
+    [[nodiscard]] bool hasAdjacentMines() const;
+
     /// 判断是否已被翻开
     [[nodiscard]] bool isRevealed() const;
 

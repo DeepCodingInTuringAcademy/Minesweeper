@@ -21,6 +21,11 @@ bool Cell::hasMine() const
     return hasMine_;
 }
 
+bool Cell::hasAdjacentMines() const
+{
+    return adjacentMines_ != 0;
+}
+
 /// 判断是否已被翻开
 bool Cell::isRevealed() const
 {

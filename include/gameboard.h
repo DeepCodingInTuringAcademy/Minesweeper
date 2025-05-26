@@ -26,7 +26,9 @@ class GameBoard
 
     [[nodiscard]] int countAdjacentMines(int x, int y) const;            ///< 计算相邻地雷数
 public:
-    [[nodiscard]] bool inBounds(int x, int y) const; ///< 判断坐标是否合法
+    [[nodiscard]] bool inBoundsX(int x) const;  ///< 判断坐标是否合法
+    [[nodiscard]] bool inBoundsY(int y) const;  ///< 判断坐标是否合法
+    [[nodiscard]] bool inBounds(int x, int y) const;  ///< 判断坐标是否合法
     void generateMines(int firstX, int firstY); ///< 初始化地雷分布
     // Rain
     GameBoard(int width, int height, int mineCount);
@@ -42,6 +44,8 @@ public:
     //  格子状态访问
     // 格子是否有地雷
     [[nodiscard]] bool cellHasMine(int x, int y) const;
+
+    [[nodiscard]] bool cellHasAdjacentMines(int x, int y) const;
     // 格子是否被揭开
     [[nodiscard]] bool cellIsRevealed(int x, int y) const;
     // 各自是否被插旗
@@ -51,6 +55,9 @@ public:
     // 地图尺寸
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
+
+    // 获取地图所有地雷数
+    [[nodiscard]] int getMineCount() const;
 };
 
 #endif // GAMEBOARD_H

@@ -66,10 +66,20 @@ int GameBoard::countAdjacentMines(const int x, const int y) const
   return count;
 }
 
+bool GameBoard::inBoundsX(const int x) const
+{
+  return x >= 0 && x < width_;
+}
+
+bool GameBoard::inBoundsY(const int y) const
+{
+  return y >= 0 && y < height_;
+}
+
 // 判断坐标是否合法
 bool GameBoard::inBounds(const int x, const int y) const
 {
-  return x >= 0 && x < width_ && y >= 0 && y < height_;
+  return inBoundsX(x) && inBoundsY(y);
 }
 
 GameBoard::GameBoard(const int width, const int height, const int mineCount)
@@ -77,7 +87,7 @@ GameBoard::GameBoard(const int width, const int height, const int mineCount)
   this->width_ = width;
   this->height_ = height;
   this->mineCount_ = mineCount;
-  this->firstMove_ = (true);
+  this->firstMove_ = true;
   this->board_ = std::vector(height_, std::vector(width_, Cell()));
 }
 
@@ -131,7 +141,7 @@ void GameBoard::display(const bool revealAll) const
   const int width = this->getWidth();
 
   // 打印列号
-  std::cout << "    "; // 行号空白占位
+  std::cout << "   "; // 行号空白占位
   for (int col = 0; col < width; ++col)
   {
     std::cout << std::setw(3) << col;
@@ -183,37 +193,27 @@ void GameBoard::display(const bool revealAll) const
 
 bool GameBoard::cellHasMine(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return false; // Invalid coordinates, return false
-  }
   return board_[x][y].hasMine();
 }
+
+bool GameBoard::cellHasAdjacentMines(const int x, const int y) const
+{
+  return board_[x][y].hasAdjacentMines();
+}
+
 // Check if the cell is revealed
 bool GameBoard::cellIsRevealed(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return false; // Invalid coordinates, return false
-  }
   return board_[x][y].isRevealed(); // Return if the cell is revealed
 }
 
 bool GameBoard::cellIsFlagged(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return false; // Invalid coordinates, return false
-  }
   return board_[x][y].isFlagged();
 }
 // Get the number of adjacent mines to the cell
 int GameBoard::getAdjacentMines(const int x, const int y) const
 {
-  if (!inBounds(x, y))
-  {
-    return -1; // Invalid coordinates, return -1
-  }
   return board_[x][y].getAdjacentMines(); // Return the number of adjacent mines
 }
 
@@ -225,4 +225,9 @@ int GameBoard::getWidth() const
 int GameBoard::getHeight() const
 {
   return this->height_;
+}
+
+int GameBoard::getMineCount() const
+{
+  return this->mineCount_;
 }

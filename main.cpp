@@ -3,9 +3,12 @@
 
 int main()
 {
-    Game game(10, 10, 20);
-    game.startMenu();
-    if (!game.willExit()) game.run();
+    Game game(10, 10, 15);
+    while (true) {
+        game.startMenu();
+        if (!game.willExit()) game.run();
+        else break;
+    }
 
     pauseScreen();
     return 0;
