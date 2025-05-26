@@ -1,14 +1,12 @@
-#include "include/game.h"
-#include <windows.h>
+#include "game.h"
+#include "utility.h"
 
 int main()
 {
-    SetConsoleOutputCP(CP_UTF8);
-    Game game(10, 10, 51);
+    Game game(10, 10, 20);
+    game.startMenu();
+    if (!game.willExit()) game.run();
 
-    while (!game.Begin())
-        game.startMenu();
-
-    while (!game.Over())
-        game.run();
+    pauseScreen();
+    return 0;
 }

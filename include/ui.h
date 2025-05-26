@@ -8,8 +8,6 @@
 
 #pragma once
 #include <string>
-#include <iostream>
-#include "utility.h"
 
 /**
  * @class GameUI
@@ -21,28 +19,30 @@ class GameUI
 {
 public:
     /// 显示 ASCII 风格游戏标题
-    void showTitle() const;
+    static void showTitle() ;
 
     /// 显示主菜单选项
-    void showMainMenu() const;
+    static void showMainMenu() ;
 
     /// 显示非法选项提示
-    void showInvalidOption() const;
+    static void showInvalidOption() ;
 
     /// 显示游戏退出信息
-    void showExitMessage() const;
+    static void showExitMessage() ;
 
     /// 获取用户菜单选择（返回整数）
-    [[nodiscard]] int getMenuChoice() const;
+    [[nodiscard]] static int getMenuChoice() ;
 
     /// 显示输入命令帮助信息
-    void showInstructions() const;
+    static void showInstructions() ;
 
     /// 显示命令输入提示符
-    void promptInput() const;
+    static void promptInput() ;
 
     /// 打印提示信息（如错误、成功、操作反馈）
-    void printMessage(const std::string &message) const;
+    static void printMessage(const std::string &message) ;
+
+    static void printMessage();
 };
 
 #endif // UI_H

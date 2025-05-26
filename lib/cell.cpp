@@ -10,7 +10,7 @@ void Cell::placeMine()
 }
 
 /// 设置相邻地雷数量
-void Cell::setAdjacentMines(int count)
+void Cell::setAdjacentMines(const int count)
 {
     adjacentMines_ = count;
 }
@@ -49,6 +49,5 @@ void Cell::reveal()
 /// 标记或取消标记格子
 void Cell::toggleFlag()
 {
-    if (!flagged_)
-        flagged_ = true;
+    flagged_ = !flagged_;
 }
