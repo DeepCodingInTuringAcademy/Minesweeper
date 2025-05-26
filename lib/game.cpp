@@ -1,9 +1,12 @@
 
 #include "game.h"
+#include "utility.h"
+#include "iostream"
+
 
 void Game::handleInput(const std::string &input)
 {
-    std::vector<std::string> ipt_vec = split(input);
+    const std::vector<std::string> ipt_vec = split(input);
 
     if (ipt_vec.empty())
     {
@@ -92,10 +95,7 @@ void Game::processReveal(int x, int y)
     {
         gameOver_ = true;
         win_ = true;
-        return;
     }
-
-    // board_.display();
 }
 
 void Game::processFlag(int x, int y)
@@ -125,7 +125,7 @@ void Game::processFlag(int x, int y)
     board_.display();
 }
 
-Game::Game(int width, int height, int mineCount) : board_(width, height, mineCount)
+Game::Game(const int width, const int height, const int mineCount) : board_(width, height, mineCount)
 {
     ui_ = GameUI();
     gameOver_ = false;

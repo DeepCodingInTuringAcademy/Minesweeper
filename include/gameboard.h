@@ -7,10 +7,6 @@
  */
 
 #pragma once
-#include <random>
-#include <algorithm>
-#include <iostream>
-#include <iomanip>
 #include <vector>
 #include "cell.h"
 
@@ -28,10 +24,9 @@ class GameBoard
 
     // dearling
 
-    int countAdjacentMines(int x, int y);            ///< 计算相邻地雷数
-    [[nodiscard]] bool inBounds(int x, int y) const; ///< 判断坐标是否合法
-
+    [[nodiscard]] int countAdjacentMines(int x, int y) const;            ///< 计算相邻地雷数
 public:
+    [[nodiscard]] bool inBounds(int x, int y) const; ///< 判断坐标是否合法
     void generateMines(int firstX, int firstY); ///< 初始化地雷分布
     // Rain
     GameBoard(int width, int height, int mineCount);

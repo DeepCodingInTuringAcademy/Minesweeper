@@ -12,24 +12,24 @@ void GameUI::showTitle() const
               << std::endl;
 }
 
-void GameUI::showMainMenu() const
+void GameUI::showMainMenu()
 {
     std::cout << "1. 开始新游戏" << std::endl;
     std::cout << "2. 查看帮助信息" << std::endl;
     std::cout << "3. 退出游戏 " << std::endl;
 }
 
-void GameUI::showInvalidOption() const
+void GameUI::showInvalidOption()
 {
     std::cout << "无效选择，请重新输入" << std::endl;
 }
 
-void GameUI::showExitMessage() const
+void GameUI::showExitMessage()
 {
     std::cout << "感谢Play,再会！" << std::endl;
 }
 
-int GameUI::getMenuChoice() const
+int GameUI::getMenuChoice()
 {
     int choice;
     while (!(std::cin >> choice))
@@ -41,19 +41,19 @@ int GameUI::getMenuChoice() const
     return choice;
 }
 
-void GameUI::showInstructions() const
+void GameUI::showInstructions()
 {
     std::cout << "扫雷游戏帮助信息：" << std::endl;
     std::cout << "输入坐标来翻开方块，例如 x y" << std::endl;
     std::cout << "目标是翻开所有不是地雷的方块" << std::endl;
 }
 
-void GameUI::promptInput() const
+void GameUI::promptInput()
 {
     std::cout << "请输入命令：" << std::endl;
 }
 
-void GameUI::printMessage(const std::string &message) const
+void GameUI::printMessage(const std::string &message)
 {
     std::cout << message << std::endl;
 }

@@ -9,11 +9,8 @@
 #pragma once
 
 #include <string>
-#include <iostream>
-#include <stdexcept>
 #include "gameboard.h"
 #include "ui.h"
-#include "utility.h"
 
 /**
  * @class Game
