@@ -11,13 +11,13 @@ void Game::handleInput(const std::string &input)
     if (ipt_vec.empty())
     {
         throw std::invalid_argument(
-            "You didn't enter an instruction!\n" + usageInfo());
+            "You didn't enter an instruction!");
     }
 
     if (ipt_vec.size() != 3)
     {
         throw std::invalid_argument(
-            "Invalid command format!\n" + usageInfo());
+            "Invalid command format!");
     }
 
     const std::string &command = ipt_vec[0];
@@ -25,7 +25,7 @@ void Game::handleInput(const std::string &input)
     if (command != "reveal" && command != "r" && command != "flag" && command != "f")
     {
         throw std::invalid_argument(
-            "Unknown command \"" + command + "\"!\n" + usageInfo());
+            "Unknown command \"" + command + "\"!");
     }
 
     int cur_x, cur_y;
@@ -37,7 +37,7 @@ void Game::handleInput(const std::string &input)
     catch (const std::invalid_argument &)
     {
         throw std::invalid_argument(
-            "Coordinates must be integers!\n" + usageInfo());
+            "Coordinates must be integers!");
     }
 
     if (command == "reveal" || command == "r")
@@ -69,21 +69,7 @@ void Game::processReveal(int x, int y)
         return;
     }
 
-    // inBounds在Gameboard中是私有方法，要求在Gameboard中遇到超界参数时抛出std::invalid_argument
-    try
-    {
-        board_.revealCell(x, y);
-    }
-    catch (const std::invalid_argument &)
-    {
-        throw std::invalid_argument(
-            "Coordinates out of bounds!\n"
-            "  <x> must be in range [0, " +
-            std::to_string(board_.getWidth()) + ")\n"
-                                                "  <y> must be in range [0, " +
-            std::to_string(board_.getHeight()) + ")\n" +
-            usageInfo());
-    }
+    board_.revealCell(x, y);
 
     if (board_.isGameOver())
     {
@@ -106,22 +92,7 @@ void Game::processFlag(int x, int y)
         return;
     }
 
-    // inBounds在Gameboard中是私有方法，要求在Gameboard中遇到超界参数时抛出std::invalid_argument
-    try
-    {
-        board_.toggleFlag(x, y);
-    }
-    catch (const std::invalid_argument &)
-    {
-        throw std::invalid_argument(
-            "Coordinates out of bounds!\n"
-            "  <x> must be in range [0, " +
-            std::to_string(board_.getWidth()) + ")\n"
-                                                "  <y> must be in range [0, " +
-            std::to_string(board_.getHeight()) + ")\n" +
-            usageInfo());
-    }
-
+    board_.toggleFlag(x, y);
     board_.display();
 }
 
@@ -136,19 +107,32 @@ Game::Game(const int width, const int height, const int mineCount) : board_(widt
 
 void Game::run()
 {
-    clearScreen();
-    board_.display();  // 显示当前地图状态
-    ui_.promptInput(); // 提示用户输入
-    std::string input;
-    std::getline(std::cin, input); // 获取用户输入
+    std::string error;
+    while (!this->Over()) {
+        clearScreen();
+        board_.display();  // 显示当前地图状态
 
-    try
-    {
-        handleInput(input); // 处理输入
-    }
-    catch (const std::invalid_argument &e)
-    {
-        ui_.printMessage(e.what()); // 如果有错误，打印错误信息
+        if (!error.empty()) {
+            GameUI::printMessage(error); // 如果有错误，打印错误信息
+            GameUI::printMessage(usageInfo());
+            error.clear();
+        }
+        GameUI::promptInput(); // 提示用户输入
+
+        std::string input;
+        std::getline(std::cin, input); // 获取用户输入
+
+        try
+        {
+            handleInput(input); // 处理输入
+        }
+        catch (const std::invalid_argument &e)
+        {
+            error = e.what();
+        }
+
+        clearScreen();
+        board_.display();
     }
 
     pauseScreen();
