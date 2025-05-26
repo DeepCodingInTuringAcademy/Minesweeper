@@ -155,24 +155,40 @@ void Game::run()
 
 void Game::startMenu()
 {
-    ui_.showTitle();
-    ui_.showMainMenu();
-    switch (ui_.getMenuChoice())
-    {
-    case 1:
-        begin_ = true;
-        break;
-    case 2:
-        ui_.showInstructions();
-        break;
-    case 3:
-        ui_.showExitMessage();
-        exit(0);
-        break;
-    default:
-        ui_.showInvalidOption();
-        break;
+    while (!Begin()) {
+        clearScreen();
+        GameUI::showTitle();
+        GameUI::showMainMenu();
+        switch (GameUI::getMenuChoice())
+        {
+        case 1:
+            begin_ = true;
+            break;
+        case 2:
+            while (true) {
+                clearScreen();
+                GameUI::showTitle();
+                GameUI::showInstructions();
+                GameUI::printMessage(usageInfo());
+                GameUI::printMessage();
+                GameUI::printMessage("Enter any key to return main menu...");
+                if (std::cin.get()) {
+                    break;
+                }
+            }
+            break;
+        case 3:
+            clearScreen();
+            GameUI::showTitle();
+            GameUI::showExitMessage();
+            exit();
+            return;
+        default:
+            GameUI::showInvalidOption();
+            break;
+        }
     }
+
 }
 
 bool Game::willExit() const
