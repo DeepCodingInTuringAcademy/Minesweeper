@@ -49,6 +49,5 @@ void Cell::reveal()
 /// 标记或取消标记格子
 void Cell::toggleFlag()
 {
-    if (!flagged_)
-        flagged_ = true;
+    flagged_ = !flagged_;
 }
