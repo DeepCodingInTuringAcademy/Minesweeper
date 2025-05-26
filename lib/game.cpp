@@ -143,23 +143,13 @@ void Game::run()
         board_.display();
     }
 
-    pauseScreen();
     clearScreen();
-    if (gameOver_)
-    { // 游戏结束检查
-        if (win_)
-        {
-            ui_.printMessage("Congratulations! You won!");
-        }
-        else
-        {
-            ui_.printMessage("Game Over! You hit a mine.");
-        }
-        board_.display(true); // 显示完整地图
+    board_.display(true); // 显示完整地图
+    if (win_) {
+        GameUI::printMessage("Congratulations! You won!");
     }
-    else
-    {
-        board_.display(); // 显示当前地图状态
+    else {
+        GameUI::printMessage("Game Over! You hit a mine.");
     }
 }
 
