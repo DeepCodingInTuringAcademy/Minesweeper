@@ -67,13 +67,13 @@ void Game::processReveal(int x, int y)
 {
     if (board_.cellIsRevealed(x, y))
     {
-        ui_.printMessage("This cell is already revealed.");
+        GameUI::printMessage("This cell is already revealed.");
         return;
     }
 
     if (board_.cellIsFlagged(x, y))
     {
-        ui_.printMessage("This cell is flagged. Remove flag first.");
+        GameUI::printMessage("This cell is flagged. Remove flag first.");
         return;
     }
 
@@ -96,7 +96,7 @@ void Game::processFlag(int x, int y)
 {
     if (board_.cellIsRevealed(x, y))
     {
-        ui_.printMessage("You can't flag a revealed cell.");
+        GameUI::printMessage("You can't flag a revealed cell.");
         return;
     }
 
