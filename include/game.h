@@ -21,6 +21,7 @@ class Game
     GameBoard board_;       ///< 游戏地图
     GameUI ui_;             ///< 控制台 UI 显示工具
     bool gameOver_ = false; ///< 游戏是否结束
+    bool gameExit_ = false; ///< 游戏是否即将退出
     bool win_ = false;      ///< 是否获胜
     bool begin_ = false;    ///< 是否开始游戏
     bool first_ = true;     ///< 是否是第一次输入
@@ -34,10 +35,12 @@ class Game
 public:
     // 十七
     Game(int, int, int);
-    [[nodiscard]] bool Over() const;  /// 游戏是否结束
-    [[nodiscard]] bool Begin() const; /// 游戏是否开始
-    void run();                       ///< 游戏主循环
-    void startMenu();                 ///< 静态主菜单入口函数
+    [[nodiscard]] bool Over() const;            /// 游戏是否结束
+    [[nodiscard]] bool Begin() const;           /// 游戏是否开始
+    void run();                                 ///< 游戏主循环
+    void startMenu();                           ///< 静态主菜单入口函数
+    [[nodiscard]] bool willExit() const;        ///< 游戏是否准备退出
+    void exit();                                ///< 游戏准备退出
 };
 
 #endif // GAME_H

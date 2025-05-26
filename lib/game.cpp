@@ -175,6 +175,16 @@ void Game::startMenu()
     }
 }
 
+bool Game::willExit() const
+{
+    return gameExit_;
+}
+
+void Game::exit()
+{
+    gameExit_ = true;
+}
+
 bool Game::Over() const
 {
     return gameOver_;
