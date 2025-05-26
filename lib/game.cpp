@@ -106,7 +106,22 @@ void Game::processFlag(int x, int y)
 
 Game::Game(const int width, const int height, const int mineCount) : board_(width, height, mineCount)
 {
-    ui_ = GameUI();
+    ui_ = {};
+    gameOver_ = false;
+    win_ = false;
+    begin_ = false;
+    first_ = true;
+}
+
+std::string Game::version()
+{
+    return "v 1.0.0";
+}
+
+void Game::reset()
+{
+    board_ = {board_.getWidth(), board_.getHeight(), board_.getMineCount()};
+    ui_ = {};
     gameOver_ = false;
     win_ = false;
     begin_ = false;
@@ -115,6 +130,7 @@ Game::Game(const int width, const int height, const int mineCount) : board_(widt
 
 void Game::run()
 {
+    reset();
     std::string error;
     while (!this->Over()) {
         clearScreen();
@@ -151,6 +167,9 @@ void Game::run()
     else {
         GameUI::printMessage("Game Over! You hit a mine.");
     }
+    GameUI::printMessage("Enter any key to return main menu...");
+    while (!std::cin.get()) {}
+    begin_ = false;
 }
 
 void Game::startMenu()
@@ -214,6 +233,6 @@ bool Game::Begin() const
 std::string Game::usageInfo()
 {
     return "Usage:\n"
-           "  reveal/r <x> <y> or r <x> <y>    - Reveal the cell at (x, y)\n"
-           "  flag/f <x> <y> or f <x> <y>      - Place or remove a flag at (x, y)";
+           "  [reveal/r] <x> <y>    - Reveal the cell at (x, y)\n"
+           "  [flag/f] <x> <y>      - Place or remove a flag at (x, y)";
 }

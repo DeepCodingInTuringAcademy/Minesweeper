@@ -131,7 +131,7 @@ void GameBoard::display(const bool revealAll) const
   const int width = this->getWidth();
 
   // 打印列号
-  std::cout << "    "; // 行号空白占位
+  std::cout << "   "; // 行号空白占位
   for (int col = 0; col < width; ++col)
   {
     std::cout << std::setw(3) << col;

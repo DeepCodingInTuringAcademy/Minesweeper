@@ -35,6 +35,8 @@ class Game
 public:
     // 十七
     Game(int, int, int);
+    static std::string version();
+    void reset();                               /// 重置游戏数据
     [[nodiscard]] bool Over() const;            /// 游戏是否结束
     [[nodiscard]] bool Begin() const;           /// 游戏是否开始
     void run();                                 ///< 游戏主循环

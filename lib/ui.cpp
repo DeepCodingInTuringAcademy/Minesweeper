@@ -1,5 +1,6 @@
 #include "iostream"
 #include "ui.h"
+#include "game.h"
 #include "utility.h"
 
 
@@ -10,7 +11,7 @@ void GameUI::showTitle()
     std::cout << R"( /  \ /  \|   |/   |   \ |    __)_ \_____  \\   \/\/   /|    __)_  |    __)_  |     ___/|    __)_  |       _/)" << std::endl;
     std::cout << R"(/    Y    \   /    |    \|        \/        \\        / |        \ |        \ |    |    |        \ |    |   \)" << std::endl;
     std::cout << R"(\____|__  /___\____|__  /_______  /_______  / \__/\  / /_______  //_______  / |____|   /_______  / |____|_  /)" << std::endl;
-    std::cout << R"(        \/            \/        \/        \/       \/          \/         \/                   \/         \/ )" << std::endl;
+    std::cout << R"(        \/            \/        \/        \/       \/          \/         \/                   \/         \/    )" + Game::version() << std::endl;
 }
 
 void GameUI::showMainMenu()
@@ -44,9 +45,9 @@ int GameUI::getMenuChoice()
 
 void GameUI::showInstructions()
 {
-    std::cout << "Minesweeper Instructions:" << std::endl;
+    std::cout << "Minesweeper" << "(" << Game::version() << ")" << " Instructions:" << std::endl;
     std::cout << "Enter the command to reveal cells." << std::endl;
-    std::cout << "Your goal is to reveal all cells and don't die!" << std::endl;
+    std::cout << "Your goal is to reveal all cells and don't hit a mine!" << std::endl;
 }
 
 void GameUI::promptInput()
