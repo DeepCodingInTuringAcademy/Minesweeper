@@ -39,6 +39,14 @@ void Game::handleInput(const std::string &input)
         throw std::invalid_argument(
             "Coordinates must be integers!");
     }
+    if (!board_.inBounds(cur_x, cur_y)) {
+        throw std::invalid_argument(
+        "Coordinates out of bounds!\n"
+        "  <x> must be in range [0, " +
+        std::to_string(board_.getWidth()) + ")\n"
+                                            "  <y> must be in range [0, " +
+        std::to_string(board_.getHeight()) + ")\n");
+    }
 
     if (command == "reveal" || command == "r")
     {
