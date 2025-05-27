@@ -2,6 +2,7 @@
 #include <vector>
 #include "utility.h"
 #include "iostream"
+#include "soundPlay.h"
 
 
 void Game::handleInput(const std::string &input)
@@ -191,12 +192,15 @@ void Game::run()
     }
 
     clearScreen();
+    main_music.stop();
     board_.display(true); // 显示完整地图
     if (win_) {
         GameUI::printMessage("Congratulations! You won!");
+        win_music.play();
     }
     else {
         GameUI::printMessage("Game Over! You hit a mine.");
+        lose_music.play();
     }
     GameUI::printMessage("Enter any key to return main menu...");
     while (!std::cin.get()) {}
@@ -205,6 +209,8 @@ void Game::run()
 
 void Game::startMenu()
 {
+    main_music.play();
+    main_music.setLooping(true);
     while (!Begin()) {
         clearScreen();
         GameUI::showTitle();
