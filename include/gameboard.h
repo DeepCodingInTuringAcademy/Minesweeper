@@ -20,7 +20,6 @@ class GameBoard
     int height_;                           ///< 地图高度
     int mineCount_;                        ///< 地雷总数
     std::vector<std::vector<Cell>> board_; ///< 地图格子
-    bool firstMove_;                       ///< 是否第一次点击（用于避免初点就是雷）
 
     // dearling
 
