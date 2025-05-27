@@ -116,14 +116,6 @@ void Game::processReveal(const int x, const int y) {
             }
         }
     }
-
-    // 检查游戏状态
-    if (board_.isGameOver()) {
-        gameOver_ = true;
-    } else if (board_.isGameWon()) {
-        gameOver_ = true;
-        win_ = true;
-    }
 }
 
 void Game::processFlag(const int x, const int y)
@@ -186,9 +178,7 @@ void Game::run()
         {
             error = e.what();
         }
-
-        clearScreen();
-        board_.display();
+        updateStatus();
     }
 
     clearScreen();
@@ -205,6 +195,15 @@ void Game::run()
     GameUI::printMessage("Enter any key to return main menu...");
     while (!std::cin.get()) {}
     begin_ = false;
+}
+
+void Game::updateStatus() {
+    if (board_.isGameLose()) {
+        gameOver_ = true;
+    } else if (board_.isGameWon()) {
+        gameOver_ = true;
+        win_ = true;
+    }
 }
 
 void Game::startMenu()
