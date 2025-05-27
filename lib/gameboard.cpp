@@ -87,7 +87,6 @@ GameBoard::GameBoard(const int width, const int height, const int mineCount)
   this->width_ = width;
   this->height_ = height;
   this->mineCount_ = mineCount;
-  this->firstMove_ = true;
   this->board_ = std::vector(height_, std::vector(width_, Cell()));
 }
 
@@ -120,7 +119,7 @@ bool GameBoard::isGameWon() const
   return true; // 所有非雷格子都翻开了，胜利
 }
 
-bool GameBoard::isGameOver() const
+bool GameBoard::isGameLose() const
 {
   for (auto &row : this->board_)
   {

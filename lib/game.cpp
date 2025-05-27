@@ -2,6 +2,7 @@
 #include <vector>
 #include "utility.h"
 #include "iostream"
+#include "soundPlay.h"
 
 
 void Game::handleInput(const std::string &input)
@@ -52,8 +53,9 @@ void Game::handleInput(const std::string &input)
     {
         if (first_)
         {
-            board_.generateMines(cur_x, cur_y); // 埋雷
+            board_.generateMines(cur_x, cur_y); // 先埋雷
             first_ = false;
+            board_.revealCell(cur_x, cur_y);
         }
         processReveal(cur_x, cur_y);
     }
@@ -115,14 +117,6 @@ void Game::processReveal(const int x, const int y) {
             }
         }
     }
-
-    // 检查游戏状态
-    if (board_.isGameOver()) {
-        gameOver_ = true;
-    } else if (board_.isGameWon()) {
-        gameOver_ = true;
-        win_ = true;
-    }
 }
 
 void Game::processFlag(const int x, const int y)
@@ -139,7 +133,6 @@ void Game::processFlag(const int x, const int y)
 
 Game::Game(const int width, const int height, const int mineCount) : board_(width, height, mineCount)
 {
-    ui_ = {};
     gameOver_ = false;
     win_ = false;
     begin_ = false;
@@ -154,7 +147,6 @@ std::string Game::version()
 void Game::reset()
 {
     board_ = {board_.getWidth(), board_.getHeight(), board_.getMineCount()};
-    ui_ = {};
     gameOver_ = false;
     win_ = false;
     begin_ = false;
@@ -187,26 +179,38 @@ void Game::run()
         {
             error = e.what();
         }
-
-        clearScreen();
-        board_.display();
+        updateStatus();
     }
 
     clearScreen();
+    main_music.stop();
     board_.display(true); // 显示完整地图
     if (win_) {
         GameUI::printMessage("Congratulations! You won!");
+        win_music.play();
     }
     else {
         GameUI::printMessage("Game Over! You hit a mine.");
+        lose_music.play();
     }
     GameUI::printMessage("Enter any key to return main menu...");
     while (!std::cin.get()) {}
     begin_ = false;
 }
 
+void Game::updateStatus() {
+    if (board_.isGameLose()) {
+        gameOver_ = true;
+    } else if (board_.isGameWon()) {
+        gameOver_ = true;
+        win_ = true;
+    }
+}
+
 void Game::startMenu()
 {
+    main_music.play();
+    main_music.setLooping(true);
     while (!Begin()) {
         clearScreen();
         GameUI::showTitle();

@@ -20,7 +20,6 @@ class GameBoard
     int height_;                           ///< 地图高度
     int mineCount_;                        ///< 地雷总数
     std::vector<std::vector<Cell>> board_; ///< 地图格子
-    bool firstMove_;                       ///< 是否第一次点击（用于避免初点就是雷）
 
     // dearling
 
@@ -36,7 +35,7 @@ public:
     void revealCell(int x, int y);         ///< 翻开格子
     void toggleFlag(int x, int y);         ///< 标记/取消标记格子
     [[nodiscard]] bool isGameWon() const;  ///< 判断是否获胜
-    [[nodiscard]] bool isGameOver() const; ///< 判断是否失败
+    [[nodiscard]] bool isGameLose() const; ///< 判断是否失败
 
     void display(bool revealAll = false) const; ///< 显示地图
 

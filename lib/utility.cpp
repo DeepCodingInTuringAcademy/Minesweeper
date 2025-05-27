@@ -4,14 +4,22 @@
 #include "iostream"
 
 
-std::vector<std::string> split(const std::string &str)
+std::vector<std::string> split(const std::string &str, char delimiter)
 {
-    std::istringstream iss(str);
-    std::vector<std::string> res;
-    std::string cur;
-    while (iss >> cur)
-    {
-        res.emplace_back(cur);
+    std::vector<std::string> tokens;
+    std::stringstream ss(str);
+    std::string token;
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    return tokens;
+}
+
+std::filesystem::path getPath(const std::string &base_dir, const std::vector<std::string>& relative_path) {
+    std::filesystem::path src_path = base_dir;
+    std::filesystem::path res = src_path.parent_path();
+    for (const auto& path: relative_path) {
+        res /= path;
     }
     return res;
 }
