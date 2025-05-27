@@ -1,8 +1,7 @@
 #include "cell.h"
 
-Cell::Cell() : hasMine_(false), revealed_(false), flagged_(false), adjacentMines_(0)
-{
-}
+Cell::Cell()
+    : hasMine_(false), revealed_(false), flagged_(false), adjacentMines_(0) {}
 
 void Cell::placeMine()
 {
