@@ -19,7 +19,6 @@
 class Game
 {
     GameBoard board_;       ///< 游戏地图
-    GameUI ui_;             ///< 控制台 UI 显示工具
     bool gameOver_ = false; ///< 游戏是否结束
     bool gameExit_ = false; ///< 游戏是否即将退出
     bool win_ = false;      ///< 是否获胜

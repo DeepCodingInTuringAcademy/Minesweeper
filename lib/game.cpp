@@ -139,7 +139,6 @@ void Game::processFlag(const int x, const int y)
 
 Game::Game(const int width, const int height, const int mineCount) : board_(width, height, mineCount)
 {
-    ui_ = {};
     gameOver_ = false;
     win_ = false;
     begin_ = false;
@@ -154,7 +153,6 @@ std::string Game::version()
 void Game::reset()
 {
     board_ = {board_.getWidth(), board_.getHeight(), board_.getMineCount()};
-    ui_ = {};
     gameOver_ = false;
     win_ = false;
     begin_ = false;
