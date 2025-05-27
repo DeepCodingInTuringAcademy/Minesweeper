@@ -119,7 +119,7 @@ bool GameBoard::isGameWon() const
   return true; // 所有非雷格子都翻开了，胜利
 }
 
-bool GameBoard::isGameOver() const
+bool GameBoard::isGameLose() const
 {
   for (auto &row : this->board_)
   {
