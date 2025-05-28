@@ -29,7 +29,7 @@ file(GLOB LIB_SRC
         "${PROJECT_SOURCE_DIR}/lib/*.cpp"
 )
 
-add_executable(Minesweeper main.cpp config.h ${INCLUDE_SRC} ${LIB_SRC})
+add_executable(Minesweeper main.cpp ${INCLUDE_SRC} ${LIB_SRC})
 target_link_libraries(Minesweeper PRIVATE
         SFML::Audio
         SFML::System

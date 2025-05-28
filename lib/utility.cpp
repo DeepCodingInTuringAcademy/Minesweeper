@@ -17,11 +17,15 @@ std::vector<std::string> split(const std::string &str, char delimiter)
 
 std::filesystem::path getPath(const std::string &base_dir, const std::vector<std::string>& relative_path) {
     std::filesystem::path src_path = base_dir;
-    std::filesystem::path res = src_path.parent_path();
+    std::filesystem::path res = src_path;
     for (const auto& path: relative_path) {
         res /= path;
     }
     return res;
+}
+
+std::string getExecutableDir() {
+    return std::filesystem::current_path().string();
 }
 
 void clearScreen()
