@@ -33,7 +33,7 @@ class Game
 
 public:
     // 十七
-    Game(int, int, int);
+    Game(int width, int height, int mineCount);
     static std::string version();
     void reset();                               /// 重置游戏数据
     [[nodiscard]] bool Over() const;            /// 游戏是否结束
