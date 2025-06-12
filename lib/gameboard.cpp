@@ -89,11 +89,11 @@ GameBoard::GameBoard(const int width, const int height, const int mineCount)
 
 void GameBoard::revealCell(const int x, const int y)
 {
-  if (this->board_[x][y].isRevealed())
-  {
+    if (this->board_[x][y].isRevealed())
+    {
     return;
-  }
-  this->board_[x][y].reveal();
+    }
+    this->board_[x][y].reveal();
 }
 
 void GameBoard::toggleFlag(const int x, const int y)
@@ -108,8 +108,8 @@ void GameBoard::toggleFlag(const int x, const int y)
 
 bool GameBoard::isGameWon() const
 {
-  for (const auto &row : board_)
-  {
+    for (const auto &row : board_)
+    {
     for (const auto &cell : row)
     {
       if (!cell.hasMine() && !cell.isRevealed())
@@ -117,14 +117,14 @@ bool GameBoard::isGameWon() const
         return false; // 非地雷格子没翻开，未胜利
       }
     }
-  }
-  return true; // 所有非雷格子都翻开了，胜利
+    }
+    return true; // 所有非雷格子都翻开了，胜利
 }
 
 bool GameBoard::isGameLose() const
 {
-  for (auto &row : this->board_)
-  {
+    for (auto &row : this->board_)
+    {
     for (auto cell : row)
     {
       if (cell.isRevealed() && cell.hasMine())
@@ -132,32 +132,32 @@ bool GameBoard::isGameLose() const
         return true;
       }
     }
-  }
-  return false;
+    }
+    return false;
 }
 
 void GameBoard::display(const bool revealAll) const
 {
-  const int height = this->getHeight();
-  const int width = this->getWidth();
+    const int height = this->getHeight();
+    const int width = this->getWidth();
 
-  // 打印列号
-  std::cout << "   "; // 行号空白占位
-  for (int col = 0; col < width; ++col)
-  {
+    // 打印列号
+    std::cout << "   "; // 行号空白占位
+    for (int col = 0; col < width; ++col)
+    {
     std::cout << std::setw(3) << col;
-  }
-  std::cout << std::endl;
+    }
+    std::cout << std::endl;
 
-  std::cout << "   +";
-  for (int col = 0; col < width; ++col)
-  {
+    std::cout << "   +";
+    for (int col = 0; col < width; ++col)
+    {
     std::cout << "---";
-  }
-  std::cout << "+" << std::endl;
+    }
+    std::cout << "+" << std::endl;
 
-  for (int row = 0; row < height; ++row)
-  {
+    for (int row = 0; row < height; ++row)
+    {
     std::cout << std::setw(3) << row << "|";
     for (int col = 0; col < width; ++col)
     {
@@ -182,50 +182,50 @@ void GameBoard::display(const bool revealAll) const
       }
     }
     std::cout << "|" << std::endl;
-  }
+    }
 
-  std::cout << "   +";
-  for (int col = 0; col < width; ++col)
-  {
+    std::cout << "   +";
+    for (int col = 0; col < width; ++col)
+    {
     std::cout << "---";
-  }
-  std::cout << "+" << std::endl;
+    }
+    std::cout << "+" << std::endl;
 }
 
 bool GameBoard::cellHasMine(const int x, const int y) const
 {
-  return board_[x][y].hasMine();
+    return board_[x][y].hasMine();
 }
 
 bool GameBoard::cellHasAdjacentMines(const int x, const int y) const
 {
-  return board_[x][y].hasAdjacentMines();
+    return board_[x][y].hasAdjacentMines();
 }
 
 // Check if the cell is revealed
 bool GameBoard::cellIsRevealed(const int x, const int y) const
 {
-  return board_[x][y].isRevealed(); // Return if the cell is revealed
+    return board_[x][y].isRevealed(); // Return if the cell is revealed
 }
 
 bool GameBoard::cellIsFlagged(const int x, const int y) const
 {
-  return board_[x][y].isFlagged();
+    return board_[x][y].isFlagged();
 }
 
 int GameBoard::getWidth() const
 {
-  return this->width_;
+    return this->width_;
 }
 
 int GameBoard::getHeight() const
 {
-  return this->height_;
+    return this->height_;
 }
 
 int GameBoard::getMineCount() const
 {
-  return this->mineCount_;
+    return this->mineCount_;
 }
 
 int GameBoard::getMinesRemainCount() const {
