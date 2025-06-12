@@ -55,7 +55,6 @@ void Game::handleInput(const std::string &input)
         {
             board_.generateMines(cur_x, cur_y); // 先埋雷
             first_ = false;
-            board_.revealCell(cur_x, cur_y);
         }
         processReveal(cur_x, cur_y);
     }
