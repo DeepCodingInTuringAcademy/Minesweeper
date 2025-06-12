@@ -101,7 +101,12 @@ void GameBoard::revealCell(const int x, const int y)
 
 void GameBoard::toggleFlag(const int x, const int y)
 {
-  this->board_[x][y].toggleFlag();
+    if (this->board_[x][y].isFlagged()){
+        this->mineRemainsCount_ += 1;
+    } else {
+        this->mineRemainsCount_ -= 1;
+    }
+    this->board_[x][y].toggleFlag();
 }
 
 bool GameBoard::isGameWon() const
@@ -224,4 +229,8 @@ int GameBoard::getHeight() const
 int GameBoard::getMineCount() const
 {
   return this->mineCount_;
+}
+
+int GameBoard::getMinesRemainCount() const {
+    return this->mineRemainsCount_;
 }
