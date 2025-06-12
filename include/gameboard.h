@@ -19,6 +19,7 @@ class GameBoard
     int width_;                            ///< 地图宽度
     int height_;                           ///< 地图高度
     int mineCount_;                        ///< 地雷总数
+    int mineRemainsCount_;
     std::vector<std::vector<Cell>> board_; ///< 地图格子
 
     // dearling
@@ -49,14 +50,13 @@ public:
     [[nodiscard]] bool cellIsRevealed(int x, int y) const;
     // 各自是否被插旗
     [[nodiscard]] bool cellIsFlagged(int x, int y) const;
-    // 获取格子周围地雷数
-    [[nodiscard]] int getAdjacentMines(int x, int y) const;
     // 地图尺寸
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
 
     // 获取地图所有地雷数
     [[nodiscard]] int getMineCount() const;
+    [[nodiscard]] int getMinesRemainCount() const;
 };
 
 #endif // GAMEBOARD_H

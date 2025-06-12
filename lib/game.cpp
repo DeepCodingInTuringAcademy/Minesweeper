@@ -55,7 +55,6 @@ void Game::handleInput(const std::string &input)
         {
             board_.generateMines(cur_x, cur_y); // 先埋雷
             first_ = false;
-            board_.revealCell(cur_x, cur_y);
         }
         processReveal(cur_x, cur_y);
     }
@@ -131,13 +130,9 @@ void Game::processFlag(const int x, const int y)
     board_.display();
 }
 
-Game::Game(const int width, const int height, const int mineCount) : board_(width, height, mineCount)
-{
-    gameOver_ = false;
-    win_ = false;
-    begin_ = false;
-    first_ = true;
-}
+Game::Game(const int width, const int height, const int mineCount)
+    : board_(width, height, mineCount), gameOver_(false),
+      win_(false), begin_(false), first_(true) {}
 
 std::string Game::version()
 {
@@ -166,6 +161,7 @@ void Game::run()
             GameUI::printMessage(usageInfo());
             error.clear();
         }
+        GameUI::printMessage("Remaining mines: " + std::to_string(board_.getMinesRemainCount()));
         GameUI::promptInput(); // 提示用户输入
 
         std::string input;
