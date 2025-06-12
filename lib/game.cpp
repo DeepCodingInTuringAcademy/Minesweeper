@@ -136,7 +136,7 @@ Game::Game(const int width, const int height, const int mineCount)
 
 std::string Game::version()
 {
-    return "v 1.0.0";
+    return "v 1.0.1";
 }
 
 void Game::reset()
