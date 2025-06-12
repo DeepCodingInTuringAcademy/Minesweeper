@@ -130,13 +130,9 @@ void Game::processFlag(const int x, const int y)
     board_.display();
 }
 
-Game::Game(const int width, const int height, const int mineCount) : board_(width, height, mineCount)
-{
-    gameOver_ = false;
-    win_ = false;
-    begin_ = false;
-    first_ = true;
-}
+Game::Game(const int width, const int height, const int mineCount)
+    : board_(width, height, mineCount), gameOver_(false),
+      win_(false), begin_(false), first_(true) {}
 
 std::string Game::version()
 {

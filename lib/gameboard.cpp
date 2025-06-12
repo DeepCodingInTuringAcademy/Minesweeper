@@ -83,12 +83,9 @@ bool GameBoard::inBounds(const int x, const int y) const
 }
 
 GameBoard::GameBoard(const int width, const int height, const int mineCount)
-{
-  this->width_ = width;
-  this->height_ = height;
-  this->mineCount_ = mineCount;
-  this->board_ = std::vector(height_, std::vector(width_, Cell()));
-}
+    : width_(width), height_(height),
+      mineCount_(mineCount), mineRemainsCount_(mineCount),
+      board_(height_, std::vector(width_, Cell())) {}
 
 void GameBoard::revealCell(const int x, const int y)
 {
