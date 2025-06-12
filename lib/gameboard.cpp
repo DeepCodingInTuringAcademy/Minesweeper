@@ -210,11 +210,6 @@ bool GameBoard::cellIsFlagged(const int x, const int y) const
 {
   return board_[x][y].isFlagged();
 }
-// Get the number of adjacent mines to the cell
-int GameBoard::getAdjacentMines(const int x, const int y) const
-{
-  return board_[x][y].getAdjacentMines(); // Return the number of adjacent mines
-}
 
 int GameBoard::getWidth() const
 {

@@ -49,8 +49,6 @@ public:
     [[nodiscard]] bool cellIsRevealed(int x, int y) const;
     // 各自是否被插旗
     [[nodiscard]] bool cellIsFlagged(int x, int y) const;
-    // 获取格子周围地雷数
-    [[nodiscard]] int getAdjacentMines(int x, int y) const;
     // 地图尺寸
     [[nodiscard]] int getWidth() const;
     [[nodiscard]] int getHeight() const;
