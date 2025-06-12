@@ -161,6 +161,7 @@ void Game::run()
             GameUI::printMessage(usageInfo());
             error.clear();
         }
+        GameUI::printMessage("Remaining mines: " + std::to_string(board_.getMinesRemainCount()));
         GameUI::promptInput(); // 提示用户输入
 
         std::string input;
